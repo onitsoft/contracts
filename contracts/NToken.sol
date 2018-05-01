@@ -13,18 +13,18 @@ contract NToken is PausableToken, BurnableToken {
   uint8 public constant decimals = 18;
 
   uint256 private constant TOKEN_UNIT = 10 ** uint256(decimals);
+
+  uint256 public constant publicAmount = 100000000 * TOKEN_UNIT; // Tokens for public
+
   uint public startTime;
   address public crowdsaleAddress;
 
   constructor() public {
     startTime = now + 365 days;
-    totalSupply_ = 200000000 * TOKEN_UNIT;
-    balances[owner] = totalSupply_;
-    emit Transfer(address(0), owner, totalSupply_);
-  }
+    totalSupply_ =  200000000 * TOKEN_UNIT;
 
-  function totalSupply() public constant returns (uint) {
-    return totalSupply_.sub(balances[address(0)]);
+    balances[owner] = totalSupply_;
+    emit Transfer(address(0), owner, balances[owner]);
   }
 
   function burnFrom(address _from, uint256 _value) onlyOwner public {
@@ -38,9 +38,7 @@ contract NToken is PausableToken, BurnableToken {
 
   function setStartTime(uint _startTime) external {
     require(msg.sender == crowdsaleAddress);
-    if(_startTime < startTime) {
-      startTime = _startTime;
-    }
+    startTime = _startTime;
   }
 
   function transfer(address _to, uint _value) public returns (bool) {
@@ -59,12 +57,11 @@ contract NToken is PausableToken, BurnableToken {
   }
 
   function transferOwnership(address newOwner) public onlyOwner {
-    require(now >= startTime);
     super.transferOwnership(newOwner);
   }
 
   /* Do not accept ETH */
-  function () public payable {
+  function() public payable {
     revert();
   }
 

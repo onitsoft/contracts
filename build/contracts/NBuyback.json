@@ -1,0 +1,174 @@
+{
+  "contractName": "NBuyback",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820a5e675bc0600f210b0200cca1a87669e7c3824abe8b505da8d30d4df837486c10029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820a5e675bc0600f210b0200cca1a87669e7c3824abe8b505da8d30d4df837486c10029",
+  "sourceMap": "26:47:0:-;;;48:23;8:9:-1;5:2;;;30:1;27;20:12;5:2;48:23:0;26:47;;;;;;",
+  "deployedSourceMap": "26:47:0:-;;;;;",
+  "source": "pragma solidity ^0.4.18;\n\ncontract NBuyback {\n  constructor() public {}\n}",
+  "sourcePath": "/Users/macbook/Documents/Projects/n-token-crowdsale/contracts/NBuyback.sol",
+  "ast": {
+    "absolutePath": "/Users/macbook/Documents/Projects/n-token-crowdsale/contracts/NBuyback.sol",
+    "exportedSymbols": {
+      "NBuyback": [
+        6
+      ]
+    },
+    "id": 7,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6,
+        "linearizedBaseContracts": [
+          6
+        ],
+        "name": "NBuyback",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4,
+              "nodeType": "Block",
+              "src": "69:2:0",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 5,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "59:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:0:0"
+            },
+            "scope": 6,
+            "src": "48:23:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 7,
+        "src": "26:47:0"
+      }
+    ],
+    "src": "0:73:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/macbook/Documents/Projects/n-token-crowdsale/contracts/NBuyback.sol",
+    "exportedSymbols": {
+      "NBuyback": [
+        6
+      ]
+    },
+    "id": 7,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".18"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 6,
+        "linearizedBaseContracts": [
+          6
+        ],
+        "name": "NBuyback",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 4,
+              "nodeType": "Block",
+              "src": "69:2:0",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 5,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "59:2:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 3,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:0:0"
+            },
+            "scope": 6,
+            "src": "48:23:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 7,
+        "src": "26:47:0"
+      }
+    ],
+    "src": "0:73:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-05-01T11:04:28.602Z"
+}

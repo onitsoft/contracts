@@ -33,7 +33,7 @@ contract NCrowdsale {
   uint256 public tokensSold;
 
   // Soft cap in NEX tokens
-  uint256 constant public softCap = 50000000 * (10**18);
+  uint256 constant public softCap = 10000000 * (10**18);
 
   // Hard cap in NEX tokens
   uint256 constant public hardCap = 100000000 * (10**18);
@@ -64,7 +64,7 @@ contract NCrowdsale {
     * @param _token Address of the token that will be rewarded for the investors
     * @param _owner Address of the owner of the smart contract who can execute restricted functions
     */
-  function NCrowdsale(uint256 _startTime, uint256 _endTime, address _wallet, address _token, address _owner)  public {
+  constructor(uint256 _startTime, uint256 _endTime, address _wallet, address _token, address _owner) public {
     require(_startTime >= now);
     require(_endTime >= _startTime);
     require(_wallet != address(0));
@@ -89,8 +89,8 @@ contract NCrowdsale {
   /**
     * @dev Fallback function that can be used to buy tokens. Or in case of the owner, return ether to allow refunds.
     */
-  function () external payable {
-    if(msg.sender == wallet) {
+  function() external payable {
+    if (msg.sender == wallet) {
       require(hasEnded() && tokensSold < softCap);
     } else {
       buyTokens(msg.sender);
@@ -115,7 +115,7 @@ contract NCrowdsale {
     uint256 tokens = weiAmount.mul(rate);
 
     // Distribute only the remaining tokens if final contribution exceeds hard cap
-    if(tokensSold.add(tokens) > hardCap) {
+    if (tokensSold.add(tokens) > hardCap) {
       tokens = hardCap.sub(tokensSold);
       weiAmount = tokens.div(rate);
       returnToSender = msg.value.sub(weiAmount);
@@ -128,24 +128,24 @@ contract NCrowdsale {
     balances[beneficiary] = balances[beneficiary].add(weiAmount);
 
     assert(reward.transferFrom(owner, beneficiary, tokens));
-    TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
+    emit TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
 
     // Forward funds
     wallet.transfer(weiAmount);
 
     // Allow transfers 2 weeks after hard cap is reached
-    if(tokensSold == hardCap) {
+    if (tokensSold == hardCap) {
       reward.setStartTime(now + 2 weeks);
     }
 
     // Notify token contract about sale end time
-    if(!isStartTimeSet) {
+    if (!isStartTimeSet) {
       isStartTimeSet = true;
       reward.setStartTime(endTime + 2 weeks);
     }
 
     // Return funds that are over hard cap
-    if(returnToSender > 0) {
+    if (returnToSender > 0) {
       msg.sender.transfer(returnToSender);
     }
   }
@@ -197,11 +197,11 @@ contract NCrowdsale {
 
     uint256 amount = balances[msg.sender];
 
-    if(address(this).balance >= amount) {
+    if (address(this).balance >= amount) {
       balances[msg.sender] = 0;
       if (amount > 0) {
         msg.sender.transfer(amount);
-        Refund(msg.sender, amount);
+        emit Refund(msg.sender, amount);
       }
     }
   }
