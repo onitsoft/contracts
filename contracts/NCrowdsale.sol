@@ -41,6 +41,8 @@ contract NCrowdsale {
   // Switched to true once token contract is notified of when to enable token transfers
   bool private isStartTimeSet = false;
 
+  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
   /**
     * @dev Event for token purchase logging
     * @param purchaser Address that paid for the tokens
@@ -215,4 +217,13 @@ contract NCrowdsale {
     return balances[_owner];
   }
 
+  /**
+   * @dev Allows the current owner to transfer control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */
+  function transferOwnership(address newOwner) public onlyOwner {
+    require(newOwner != address(0));
+    emit OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
 }

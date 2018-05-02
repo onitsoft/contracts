@@ -1,13 +1,190 @@
 {
-  "contractName": "NBuyback",
+  "contractName": "DateTimeAPI",
   "abi": [
     {
       "constant": true,
-      "inputs": [],
-      "name": "rate",
+      "inputs": [
+        {
+          "name": "year",
+          "type": "uint16"
+        }
+      ],
+      "name": "isLeapYear",
       "outputs": [
         {
           "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getYear",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMonth",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDay",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getHour",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMinute",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSecond",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "getWeekday",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "year",
+          "type": "uint16"
+        },
+        {
+          "name": "month",
+          "type": "uint8"
+        },
+        {
+          "name": "day",
+          "type": "uint8"
+        },
+        {
+          "name": "hour",
+          "type": "uint8"
+        },
+        {
+          "name": "minute",
+          "type": "uint8"
+        },
+        {
+          "name": "second",
+          "type": "uint8"
+        }
+      ],
+      "name": "toTimestamp",
+      "outputs": [
+        {
+          "name": "timestamp",
           "type": "uint256"
         }
       ],
@@ -17,12 +194,29 @@
     },
     {
       "constant": true,
-      "inputs": [],
-      "name": "datetime",
+      "inputs": [
+        {
+          "name": "year",
+          "type": "uint16"
+        },
+        {
+          "name": "month",
+          "type": "uint8"
+        },
+        {
+          "name": "day",
+          "type": "uint8"
+        },
+        {
+          "name": "hour",
+          "type": "uint8"
+        }
+      ],
+      "name": "toTimestamp",
       "outputs": [
         {
-          "name": "",
-          "type": "address"
+          "name": "timestamp",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -31,12 +225,33 @@
     },
     {
       "constant": true,
-      "inputs": [],
-      "name": "owner",
+      "inputs": [
+        {
+          "name": "year",
+          "type": "uint16"
+        },
+        {
+          "name": "month",
+          "type": "uint8"
+        },
+        {
+          "name": "day",
+          "type": "uint8"
+        },
+        {
+          "name": "hour",
+          "type": "uint8"
+        },
+        {
+          "name": "minute",
+          "type": "uint8"
+        }
+      ],
+      "name": "toTimestamp",
       "outputs": [
         {
-          "name": "",
-          "type": "address"
+          "name": "timestamp",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -45,110 +260,36 @@
     },
     {
       "constant": true,
-      "inputs": [],
-      "name": "token",
+      "inputs": [
+        {
+          "name": "year",
+          "type": "uint16"
+        },
+        {
+          "name": "month",
+          "type": "uint8"
+        },
+        {
+          "name": "day",
+          "type": "uint8"
+        }
+      ],
+      "name": "toTimestamp",
       "outputs": [
         {
-          "name": "",
-          "type": "address"
+          "name": "timestamp",
+          "type": "uint256"
         }
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "name": "_owner",
-          "type": "address"
-        },
-        {
-          "name": "_token",
-          "type": "address"
-        },
-        {
-          "name": "_datetime",
-          "type": "address"
-        },
-        {
-          "name": "_rate",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "payable": true,
-      "stateMutability": "payable",
-      "type": "fallback"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "previousOwner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "OwnershipTransferred",
-      "type": "event"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "buyBack",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_rate",
-          "type": "uint256"
-        }
-      ],
-      "name": "setRate",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "transferOwnership",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50604051608080610a0483398101806040528101908080519060200190929190805190602001909291908051906020019092919080519060200190929190505050600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff161415151561008d57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141515156100c957600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168473ffffffffffffffffffffffffffffffffffffffff161415151561010557600080fd5b60008111151561011457600080fd5b836000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555081600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508060038190555050505050610814806101f06000396000f300608060405260043610610083576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063053f9040146100855780632c4e722e146100b257806334fcf437146100dd57806340d5605a1461010a5780638da5cb5b14610161578063f2fde38b146101b8578063fc0c546a146101fb575b005b34801561009157600080fd5b506100b060048036038101908080359060200190929190505050610252565b005b3480156100be57600080fd5b506100c76105a1565b6040518082815260200191505060405180910390f35b3480156100e957600080fd5b50610108600480360381019080803590602001909291905050506105a7565b005b34801561011657600080fd5b5061011f61060c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561016d57600080fd5b50610176610632565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101c457600080fd5b506101f9600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610657565b005b34801561020757600080fd5b506102106107ac565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000806000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a324ad24426040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050602060405180830381600087803b1580156102e857600080fd5b505af11580156102fc573d6000803e3d6000fd5b505050506040513d602081101561031257600080fd5b810190808051906020019092919050505060ff169250600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166365c72840426040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050602060405180830381600087803b1580156103b957600080fd5b505af11580156103cd573d6000803e3d6000fd5b505050506040513d60208110156103e357600080fd5b810190808051906020019092919050505060ff16915060018314806104085750600483145b806104135750600783145b8061041e5750600a83145b801561042a5750600882105b151561043557600080fd5b61044a600354856107d290919063ffffffff16565b9050600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166379cc679033866040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561051157600080fd5b505af1158015610525573d6000803e3d6000fd5b505050506040513d602081101561053b57600080fd5b8101908080519060200190929190505050151561055457fe5b3373ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f1935050505015801561059a573d6000803e3d6000fd5b5050505050565b60035481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561060257600080fd5b8060038190555050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156106b257600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156106ee57600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600081838115156107df57fe5b049050929150505600a165627a7a723058204aa8900bf4b60d9a37ba5bb25a710219ec736cf3d120f8ef2bf8d232cc5e21910029",
-  "deployedBytecode": "0x608060405260043610610083576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063053f9040146100855780632c4e722e146100b257806334fcf437146100dd57806340d5605a1461010a5780638da5cb5b14610161578063f2fde38b146101b8578063fc0c546a146101fb575b005b34801561009157600080fd5b506100b060048036038101908080359060200190929190505050610252565b005b3480156100be57600080fd5b506100c76105a1565b6040518082815260200191505060405180910390f35b3480156100e957600080fd5b50610108600480360381019080803590602001909291905050506105a7565b005b34801561011657600080fd5b5061011f61060c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561016d57600080fd5b50610176610632565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101c457600080fd5b506101f9600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610657565b005b34801561020757600080fd5b506102106107ac565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000806000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a324ad24426040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050602060405180830381600087803b1580156102e857600080fd5b505af11580156102fc573d6000803e3d6000fd5b505050506040513d602081101561031257600080fd5b810190808051906020019092919050505060ff169250600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166365c72840426040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050602060405180830381600087803b1580156103b957600080fd5b505af11580156103cd573d6000803e3d6000fd5b505050506040513d60208110156103e357600080fd5b810190808051906020019092919050505060ff16915060018314806104085750600483145b806104135750600783145b8061041e5750600a83145b801561042a5750600882105b151561043557600080fd5b61044a600354856107d290919063ffffffff16565b9050600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166379cc679033866040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561051157600080fd5b505af1158015610525573d6000803e3d6000fd5b505050506040513d602081101561053b57600080fd5b8101908080519060200190929190505050151561055457fe5b3373ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f1935050505015801561059a573d6000803e3d6000fd5b5050505050565b60035481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561060257600080fd5b8060038190555050565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156106b257600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156106ee57600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600081838115156107df57fe5b049050929150505600a165627a7a723058204aa8900bf4b60d9a37ba5bb25a710219ec736cf3d120f8ef2bf8d232cc5e21910029",
-  "sourceMap": "1191:1535:0:-;;;1433:327;8:9:-1;5:2;;;30:1;27;20:12;5:2;1433:327:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1550:1;1532:20;;:6;:20;;;;1524:29;;;;;;;;1588:1;1567:23;;:9;:23;;;;1559:32;;;;;;;;1623:1;1605:20;;:6;:20;;;;1597:29;;;;;;;;1648:1;1640:5;:9;1632:18;;;;;;;;1665:6;1657:5;;:14;;;;;;;;;;;;;;;;;;1700:9;1677:8;;:33;;;;;;;;;;;;;;;;;;1730:6;1716:5;;:21;;;;;;;;;;;;;;;;;;1750:5;1743:4;:12;;;;1433:327;;;;1191:1535;;;;;;",
-  "deployedSourceMap": "1191:1535:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1764:366;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1764:366:0;;;;;;;;;;;;;;;;;;;;;;;;;;1321:19;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1321:19:0;;;;;;;;;;;;;;;;;;;;;;;2134:72;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2134:72:0;;;;;;;;;;;;;;;;;;;;;;;;;;1268:27;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1268:27:0;;;;;;;;;;;;;;;;;;;;;;;;;;;1244:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1244:20:0;;;;;;;;;;;;;;;;;;;;;;;;;;;2516:174;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2516:174:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;1299:18;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1299:18:0;;;;;;;;;;;;;;;;;;;;;;;;;;;1764:366;1811:13;1867:11;2002:17;1827:8;;;;;;;;;;;:17;;;1845:15;1827:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1827:34:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1827:34:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1827:34:0;;;;;;;;;;;;;;;;1811:50;;;;1881:8;;;;;;;;;;;:15;;;1897;1881:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1881:32:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1881:32:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1881:32:0;;;;;;;;;;;;;;;;1867:46;;;;1938:1;1929:5;:10;:24;;;;1952:1;1943:5;:10;1929:24;:38;;;;1966:1;1957:5;:10;1929:38;:53;;;;1980:2;1971:5;:11;1929:53;1928:66;;;;;1993:1;1987:3;:7;1928:66;1920:75;;;;;;;;2022:17;2034:4;;2022:7;:11;;:17;;;;:::i;:::-;2002:37;;2053:5;;;;;;;;;;;:14;;;2068:10;2080:7;2053:35;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2053:35:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2053:35:0;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2053:35:0;;;;;;;;;;;;;;;;2046:43;;;;;;2095:10;:19;;:30;2115:9;2095:30;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;2095:30:0;1764:366;;;;:::o;1321:19::-;;;;:::o;2134:72::-;2337:5;;;;;;;;;;;2323:19;;:10;:19;;;2315:28;;;;;;;;2196:5;2189:4;:12;;;;2134:72;:::o;1268:27::-;;;;;;;;;;;;;:::o;1244:20::-;;;;;;;;;;;;;:::o;2516:174::-;2337:5;;;;;;;;;;;2323:19;;:10;:19;;;2315:28;;;;;;;;2612:1;2592:22;;:8;:22;;;;2584:31;;;;;;;;2654:8;2626:37;;2647:5;;;;;;;;;;;2626:37;;;;;;;;;;;;2677:8;2669:5;;:16;;;;;;;;;;;;;;;;;;2516:174;:::o;1299:18::-;;;;;;;;;;;;;:::o;452:272:1:-;510:7;718:1;714;:5;;;;;;;;707:12;;452:272;;;;:::o",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.18;\n\nimport \"zeppelin-solidity/contracts/math/SafeMath.sol\";\n\ncontract DateTimeAPI {\n  function isLeapYear(uint16 year) constant returns (bool);\n  function getYear(uint timestamp) constant returns (uint16);\n  function getMonth(uint timestamp) constant returns (uint8);\n  function getDay(uint timestamp) constant returns (uint8);\n  function getHour(uint timestamp) constant returns (uint8);\n  function getMinute(uint timestamp) constant returns (uint8);\n  function getSecond(uint timestamp) constant returns (uint8);\n  function getWeekday(uint timestamp) constant returns (uint8);\n  function toTimestamp(uint16 year, uint8 month, uint8 day) constant returns (uint timestamp);\n  function toTimestamp(uint16 year, uint8 month, uint8 day, uint8 hour) constant returns (uint timestamp);\n  function toTimestamp(uint16 year, uint8 month, uint8 day, uint8 hour, uint8 minute) constant returns (uint timestamp);\n  function toTimestamp(uint16 year, uint8 month, uint8 day, uint8 hour, uint8 minute, uint8 second) constant returns (uint timestamp);\n}\n\ncontract Token {\n  function burnFrom(address _from, uint256 _value) public returns (bool);\n}\n\n/**\n * @title N Token Buy-back\n */\ncontract NBuyback {\n  using SafeMath for uint256;\n\n  address public owner;\n  DateTimeAPI public datetime;\n  Token public token;\n  uint256 public rate;\n\n  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\n\n  constructor(address _owner, address _token, address _datetime, uint256 _rate) public {\n    require(_token != address(0));\n    require(_datetime != address(0));\n    require(_owner != address(0));\n    require(_rate > 0);\n\n    owner = _owner;\n    datetime = DateTimeAPI(_datetime);\n    token = Token(_token);\n    rate = _rate;\n  }\n\n  function buyBack(uint256 _amount) public {\n    uint256 month = datetime.getMonth(block.timestamp);\n    uint256 day = datetime.getDay(block.timestamp);\n\n    require((month == 1 || month == 4 || month == 7 || month == 10) && day < 8);\n\n    uint256 weiAmount = _amount.div(rate);\n\n    assert(token.burnFrom(msg.sender, _amount));\n    msg.sender.transfer(weiAmount);\n  }\n\n  function setRate(uint256 _rate) public onlyOwner {\n    rate = _rate;\n  }\n\n  /**\n    * @dev Throws if called by any account other than the owner.\n    */\n  modifier onlyOwner() {\n    require(msg.sender == owner);\n    _;\n  }\n\n  /**\n   * @dev Allows the current owner to transfer control of the contract to a newOwner.\n   * @param newOwner The address to transfer ownership to.\n   */\n  function transferOwnership(address newOwner) public onlyOwner {\n    require(newOwner != address(0));\n    emit OwnershipTransferred(owner, newOwner);\n    owner = newOwner;\n  }\n\n  function() external payable {}\n}\n\n/* TODO:\n1. Set rates for buyback\n2. Allow buyback according to rate\n3. Refund tokens if no reserves\n*/",
   "sourcePath": "/Users/macbook/Documents/Projects/n-token-crowdsale/contracts/NBuyback.sol",
   "ast": {
@@ -8723,14 +8864,7 @@
     "name": "solc",
     "version": "0.4.23+commit.124ca40d.Emscripten.clang"
   },
-  "networks": {
-    "1525277677554": {
-      "events": {},
-      "links": {},
-      "address": "0xf2ec07a2f1cbc10de697fca42f6cc546f27f5616",
-      "transactionHash": "0x69ca4e941c373a532375fe58f3d040e33b9ab24ebdec07f5c3cc105f27ee707f"
-    }
-  },
+  "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-02T16:34:30.023Z"
+  "updatedAt": "2018-05-02T16:34:30.030Z"
 }
