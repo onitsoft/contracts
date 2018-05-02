@@ -500,6 +500,34 @@ contract("NToken", accounts => {
       assert.isTrue(balanceAfter.eq(balanceBefore.add(amount)), 'balance was changed correctly');
     });
   });
+
+  it('should allow owner to burn tokens from another account', function () {
+    let amount = 100, balanceBefore, balanceAfter;
+
+    return token.balanceOf.call(accounts[1]).then(function (balance) {
+      balanceBefore = balance;
+      return token.burnFrom(accounts[1], amount, { from: owner });
+    }).then(function () {
+      return token.balanceOf.call(accounts[1]);
+    }).then(function (balance) {
+      balanceAfter = balance;
+      assert.isTrue(balanceAfter.eq(balanceBefore.sub(amount)), '100 tokens were burnt from another acc by owner');
+    });
+  });
+
+  it('should NOT allow non-owner to burn tokens from another account', function () {
+    let amount = 100, balanceBefore, balanceAfter;
+
+    return token.balanceOf.call(accounts[1]).then(function (balance) {
+      balanceBefore = balance;
+      return token.burnFrom(accounts[1], amount, { from: accounts[2] }).catch(function () { });
+    }).then(function () {
+      return token.balanceOf.call(accounts[1]);
+    }).then(function (balance) {
+      balanceAfter = balance;
+      assert.isTrue(balanceAfter.eq(balanceBefore), 'No tokens were burnt by non-owner');
+    });
+  });
 });
 
 contract('NCrowdsale', function (accounts) {
