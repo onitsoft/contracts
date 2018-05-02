@@ -38,7 +38,9 @@ contract NToken is PausableToken, BurnableToken {
 
   function setStartTime(uint _startTime) external {
     require(msg.sender == crowdsaleAddress);
-    startTime = _startTime;
+    if(_startTime < startTime) {
+      startTime = _startTime;
+    }
   }
 
   function transfer(address _to, uint _value) public returns (bool) {
