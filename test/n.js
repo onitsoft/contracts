@@ -3,7 +3,10 @@ const Big = require("bignumber.js");
 
 const NToken = artifacts.require("./NToken.sol");
 const NCrowdsale = artifacts.require("./NCrowdsale.sol");
+const NBuyback = artifacts.require("./NBuyback.sol");
+const DateTime = artifacts.require("./DateTime.sol");
 
+/*
 contract("NToken", accounts => {
   let owner = accounts[0],
     crowdsale = accounts[accounts.length - 1],
@@ -1100,6 +1103,105 @@ contract('NCrowdsale', function (accounts) {
       }
     })
   }
+});
+*/
+
+contract('NBuyback', function (accounts) {
+  let token, datetime, buyback, owner = accounts[0], nonOwner = accounts[9];
+
+  function resetContracts(cb) {
+    DateTime.new({ gas: 3000000 })
+    .then(function (instance) {
+      datetime = instance;
+      return NToken.new({ gas: 3000000 });
+    })
+    .then(function (instance) {
+      token = instance;
+      return token.owner.call();
+    }).then(function (_owner) {
+      return NBuyback.new(
+        _owner,
+        token.address,
+        datetime.address,
+        5000,
+        { gas: 3000000 }
+      );
+    }).then(function (instance) {
+      buyback = instance;
+
+      token.setBuybackAddress(buyback.address, { from: owner }).then(function () {
+        cb();
+      }).catch(cb);
+    });
+  }
+
+  before(resetContracts);
+
+  it("should initialize rate", () => {
+    let rate;
+    return buyback.rate
+      .call()
+      .then(_rate => {
+        assert.equal(_rate.toNumber(), 5000, "initial rate is 5000");
+      });
+  });
+
+  it("should set the owner", () => {
+    return buyback.owner.call().then(function (_owner) {
+      assert.equal(owner, _owner);
+    });
+  });
+
+  it("should accept ETH", () => {
+    return buyback.send(web3.toWei(1.5, 'ether'))
+      .then(() => web3.eth.getBalance(buyback.address))
+      .then(balance => {
+        assert.equal(web3.fromWei(balance).toNumber(), 1.5, 'contract balance is 1.5 ETH');
+      })
+  });
+
+  it("should allow to set rate", () => {
+    return buyback.setRate(6000)
+      .then(() => buyback.rate.call())
+      .then(_rate => {
+        assert.equal(_rate.toNumber(), 6000, "rate changed to 6000");
+      });
+  });
+
+  it('should allow to buy back tokens only during first 7 days of a quarter', async () => {
+    let time, buybackBalanceBefore, buybackBalanceAfter, rate, tokensBalance;
+
+    let timestamp = await token.startTime.call();
+    await advanceTime(timestamp);
+
+    buybackBalanceBefore = web3.eth.getBalance(buyback.address);
+
+    tokensBalance = await token.balanceOf.call(nonOwner);
+    assert.equal(web3.fromWei(tokensBalance).toNumber(), 0, 'initial balance is 0');
+
+    await token.transfer(nonOwner, web3.toWei(3000, 'ether'), { from: owner });
+    tokensBalance = await token.balanceOf.call(nonOwner);
+    assert.equal(web3.fromWei(tokensBalance).toNumber(), 3000, 'balance now is 50 tokens');
+    
+    await advanceTime(4733637935); // advance to 1st quarter
+    await buyback.buyBack(web3.toWei(1500, 'ether'), { from: nonOwner });
+
+    tokensBalance = await token.balanceOf.call(nonOwner);
+    await assert.equal(web3.fromWei(tokensBalance).toNumber(), 1500, 'balance after buyback is 45 tokens');
+
+    buybackBalanceAfter = web3.eth.getBalance(buyback.address);
+    rate = await buyback.rate();
+
+    assert.equal(web3.fromWei(buybackBalanceAfter).toNumber(), web3.fromWei(buybackBalanceBefore).toNumber() - 1500 / rate, 'balance should decrease after buyback');
+
+    await advanceTime(4736315967); // advance to invalid date
+    buyback.buyBack(web3.toWei(500, 'ether'), { from: nonOwner }).catch(function () { });
+    
+    let buybackBalanceAfterSecondBuyback = web3.eth.getBalance(buyback.address);
+    let nonOwnerBalanceAfterSecondBuyback = await token.balanceOf.call(nonOwner);
+    assert.equal(web3.fromWei(buybackBalanceAfter).toNumber(), web3.fromWei(buybackBalanceAfterSecondBuyback).toNumber(), 'contract balance did not change after second invalid buyback');
+    assert.equal(web3.fromWei(tokensBalance).toNumber(), web3.fromWei(nonOwnerBalanceAfterSecondBuyback).toNumber(), 'non-owner balance did not change after second invalid buyback');
+  });
 });
 
 function advanceTime(to) {

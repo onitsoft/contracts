@@ -3,22 +3,14 @@ pragma solidity ^0.4.18;
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
 contract DateTimeAPI {
-  function isLeapYear(uint16 year) constant returns (bool);
-  function getYear(uint timestamp) constant returns (uint16);
   function getMonth(uint timestamp) constant returns (uint8);
   function getDay(uint timestamp) constant returns (uint8);
-  function getHour(uint timestamp) constant returns (uint8);
-  function getMinute(uint timestamp) constant returns (uint8);
-  function getSecond(uint timestamp) constant returns (uint8);
-  function getWeekday(uint timestamp) constant returns (uint8);
-  function toTimestamp(uint16 year, uint8 month, uint8 day) constant returns (uint timestamp);
-  function toTimestamp(uint16 year, uint8 month, uint8 day, uint8 hour) constant returns (uint timestamp);
-  function toTimestamp(uint16 year, uint8 month, uint8 day, uint8 hour, uint8 minute) constant returns (uint timestamp);
-  function toTimestamp(uint16 year, uint8 month, uint8 day, uint8 hour, uint8 minute, uint8 second) constant returns (uint timestamp);
 }
 
 contract Token {
   function burnFrom(address _from, uint256 _value) public returns (bool);
+  function foo() public;
+  function transfer(address _to, uint256 _value) public returns (bool);
 }
 
 /**
@@ -33,6 +25,7 @@ contract NBuyback {
   uint256 public rate;
 
   event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+  event BuyBack(address indexed sender, uint256 tokens, uint256 rate);
 
   constructor(address _owner, address _token, address _datetime, uint256 _rate) public {
     require(_token != address(0));
@@ -46,16 +39,29 @@ contract NBuyback {
     rate = _rate;
   }
 
-  function buyBack(uint256 _amount) public {
+  function buyBack(uint256 _tokens) public {
     uint256 month = datetime.getMonth(block.timestamp);
     uint256 day = datetime.getDay(block.timestamp);
+    uint256 returnToSender = 0;
 
     require((month == 1 || month == 4 || month == 7 || month == 10) && day < 8);
 
-    uint256 weiAmount = _amount.div(rate);
+    uint256 weiAmount = _tokens.div(rate);
 
-    assert(token.burnFrom(msg.sender, _amount));
+    if (weiAmount > address(this).balance) {
+      returnToSender = weiAmount - address(this).balance;
+      weiAmount = address(this).balance;
+      _tokens = weiAmount.mul(rate);
+    }
+
+    token.burnFrom(msg.sender, _tokens);
     msg.sender.transfer(weiAmount);
+    emit BuyBack(msg.sender, _tokens, rate);
+
+    // Return tokens that are over ETH balance limit
+    if (returnToSender > 0) {
+     token.transfer(msg.sender, returnToSender);
+    }
   }
 
   function setRate(uint256 _rate) public onlyOwner {
@@ -80,11 +86,9 @@ contract NBuyback {
     owner = newOwner;
   }
 
+  function withdraw(address _to, uint _amount) public onlyOwner {
+    _to.transfer(_amount);
+  }
+
   function() external payable {}
 }
-
-/* TODO:
-1. Set rates for buyback
-2. Allow buyback according to rate
-3. Refund tokens if no reserves
-*/

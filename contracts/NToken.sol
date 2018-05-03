@@ -18,6 +18,7 @@ contract NToken is PausableToken, BurnableToken {
 
   uint public startTime;
   address public crowdsaleAddress;
+  address public buybackAddress;
 
   constructor() public {
     startTime = now + 365 days;
@@ -27,13 +28,20 @@ contract NToken is PausableToken, BurnableToken {
     emit Transfer(address(0), owner, balances[owner]);
   }
 
-  function burnFrom(address _from, uint256 _value) onlyOwner public {
+  function burnFrom(address _from, uint256 _value) external returns (bool) {
+    require(msg.sender == buybackAddress);
     _burn(_from, _value);
   }
+
+  function foo() external {}
 
   function setCrowdsaleAddress(address _crowdsaleAddress) external onlyOwner {
     crowdsaleAddress = _crowdsaleAddress;
     assert(approve(crowdsaleAddress, publicAmount));
+  }
+
+  function setBuybackAddress(address _buybackAddress) external onlyOwner {
+    buybackAddress = _buybackAddress;
   }
 
   function setStartTime(uint _startTime) external {
